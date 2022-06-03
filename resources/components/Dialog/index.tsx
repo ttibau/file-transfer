@@ -10,7 +10,7 @@ interface IButtonHeader {
   variant?: any;
 }
 
-interface DialogProps {
+export interface DialogProps {
   isDragging?: boolean;
   title: string;
   buttonGroup: IButtonHeader[];
