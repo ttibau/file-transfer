@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Window,
-  WindowContent,
-  WindowHeader,
-  Button,
-  Toolbar,
-  Panel,
-} from 'react95';
+import { Window, WindowContent, WindowHeader, Button, Toolbar } from 'react95';
 import * as Styled from './styles';
-import { useDrag } from 'react-dnd';
 
 interface IButtonHeader {
   label: string;
@@ -27,19 +19,11 @@ interface DialogProps {
 }
 
 const Dialog = (props: DialogProps) => {
-  const [{ isDragging }, dragRef] = useDrag({
-    type: 'dialog',
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
   return (
-    <Styled.Container ref={dragRef}>
+    <Styled.Container>
       <Window className='window'>
         <WindowHeader className='window-header'>
-          <span>
-            {props.title} {isDragging && '😱'}{' '}
-          </span>
+          <span>{props.title}</span>
           <Button>
             <span className='close-icon' />
           </Button>

@@ -3,9 +3,13 @@ import DesktopItem from '@components/DesktopItem';
 import Dialog from '@components/Dialog';
 import React, { useState } from 'react';
 import * as Styled from './styles';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TextField, Checkbox, Anchor, Button, Fieldset } from 'react95';
+import { useDrag } from 'react-use-gesture';
+
+interface IDialogCreatePosition {
+  x: number;
+  y: number;
+}
 
 const CreateRoomContent = () => {
   const [roomPassword, setRoomPassword] = useState<string>('');
@@ -14,6 +18,7 @@ const CreateRoomContent = () => {
   const _toggleAgreed = () => {
     setAgreed(!agreed);
   };
+
   return (
     <Fieldset label='Room info'>
       <TextField
@@ -33,7 +38,7 @@ const CreateRoomContent = () => {
         />
         <Anchor href='https://expensive.toys' target='_blank'>
           {' '}
-          Terms of Service
+          Terms of Servicess
         </Anchor>
       </Styled.DialogTermsContainer>
       <Styled.ActionContainer>
@@ -44,14 +49,30 @@ const CreateRoomContent = () => {
 };
 
 const Desktop = () => {
+  const [dialogCreateRoomPosition, setDialogCreateRoomPosition] =
+    useState<IDialogCreatePosition>({ x: 0, y: 0 });
+  const bindDialogPosition = useDrag((params) => {
+    setDialogCreateRoomPosition({
+      y: params.offset[0],
+      x: params.offset[1],
+    });
+  });
+
   return (
     <Styled.Container>
       <nav>
         <AppBarComponent />
       </nav>
       <main style={{ paddingTop: '5rem' }}>
-        <DndProvider backend={HTML5Backend}>
-          <DesktopItem icon='Mshtml32528_48x48_8' label='Create new room' />
+        <DesktopItem icon='Mshtml32528_48x48_8' label='Create new room' />
+        <div
+          {...bindDialogPosition()}
+          style={{
+            position: 'relative',
+            top: dialogCreateRoomPosition.x,
+            left: dialogCreateRoomPosition.y,
+          }}
+        >
           <Dialog
             title='Create new room'
             buttonGroup={[
@@ -60,7 +81,7 @@ const Desktop = () => {
             ]}
             content={CreateRoomContent()}
           />
-        </DndProvider>
+        </div>
       </main>
     </Styled.Container>
   );
