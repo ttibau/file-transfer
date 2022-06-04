@@ -2,12 +2,16 @@ import React, { useState, useContext } from 'react';
 import { AppBarComponent } from '@components/AppBar';
 import DesktopItem from '@components/DesktopItem';
 import * as Styled from './styles';
-import AppContext from '@resources/context/AppContext/index';
+import {
+  AppContext,
+  AppContextType,
+} from '@resources/context/AppContext/index';
 import CreateRoomDialog from '@components/Dialogs/CreateRoom/CreateRoom';
 
 const Desktop = () => {
-  const { setState: setGlobalState, state: globalState } =
-    useContext(AppContext);
+  const { dialogCreateRoomVisible, setDialogCreateRoomVisible } = useContext(
+    AppContext
+  ) as AppContextType;
 
   return (
     <Styled.Container>
@@ -19,10 +23,10 @@ const Desktop = () => {
           icon='Mshtml32528_48x48_8'
           label='Create new room'
           onClick={() => {
-            setGlobalState({ ...globalState, dialogCreateRoomVisible: true });
+            setDialogCreateRoomVisible(true);
           }}
         />
-        {globalState.dialogCreateRoomVisible && <CreateRoomDialog />}
+        {dialogCreateRoomVisible && <CreateRoomDialog />}
       </main>
     </Styled.Container>
   );

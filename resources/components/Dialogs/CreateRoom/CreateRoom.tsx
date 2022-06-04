@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { useDrag } from 'react-use-gesture';
 import Dialog from '@components/Dialog';
-import AppContext from '@resources/context/AppContext/index';
 import { TextField, Checkbox, Anchor, Button, Fieldset } from 'react95';
 import * as Styled from './styles';
+import {
+  AppContext,
+  AppContextType,
+} from '@resources/context/AppContext/index';
 
 const DialogContent = () => {
   const [roomPassword, setRoomPassword] = useState<string>('');
@@ -55,8 +58,11 @@ const CreateRoomDialog = () => {
       x: params.offset[1],
     });
   });
-  const { setState: setGlobalState, state: globalState } =
-    useContext(AppContext);
+  const {
+    setDialogCreateRoomVisible,
+    setDialogHelpVisible,
+    dialogCreateRoomVisible,
+  } = useContext(AppContext) as AppContextType;
   return (
     <div
       {...bindDialogPosition()}
@@ -68,7 +74,7 @@ const CreateRoomDialog = () => {
     >
       <Dialog
         onClose={() => {
-          setGlobalState({ ...globalState, dialogCreateRoomVisible: false });
+          setDialogCreateRoomVisible(false);
         }}
         title='Create new room'
         buttonGroup={[
@@ -77,10 +83,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setGlobalState({
-                ...globalState,
-                dialogCreateRoomVisible: false,
-              });
+              setDialogCreateRoomVisible(false);
             },
           },
           {
@@ -88,7 +91,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setGlobalState({ ...globalState, dialogHelpVisible: true });
+              setDialogHelpVisible(true);
             },
           },
           { label: 'Edit', variant: 'menu', size: 'sm', disabled: true },

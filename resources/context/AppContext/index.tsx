@@ -1,38 +1,31 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-type IAppType = {
-  dialogHelpVisible: boolean;
+export type AppContextType = {
   dialogCreateRoomVisible: boolean;
-};
-
-type PropsAppContext = {
-  state: IAppType;
-  setState: React.Dispatch<React.SetStateAction<IAppType>>;
+  dialogHelpVisible: boolean;
+  setDialogCreateRoomVisible: (value: boolean) => void;
+  setDialogHelpVisible: (value: boolean) => void;
 };
 
 interface IProviderProps {
   children?: React.ReactNode;
 }
 
-const DEFAULT_VALUE = {
-  state: {
-    dialogCreateRoomVisible: false,
-    dialogHelpVisible: false,
-  },
-  setState: () => {},
-};
-
-const AppContext = createContext<PropsAppContext>(DEFAULT_VALUE);
+export const AppContext = createContext<AppContextType | null>(null);
 
 const AppContextProvider: React.FC<IProviderProps> = ({
   children,
 }: IProviderProps) => {
-  const [state, setState] = useState(DEFAULT_VALUE.state);
+  const [dialogCreateRoomVisible, setDialogCreateRoomVisible] = useState(false);
+  const [dialogHelpVisible, setDialogHelpVisible] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
-        state,
-        setState,
+        dialogCreateRoomVisible,
+        setDialogCreateRoomVisible,
+        dialogHelpVisible,
+        setDialogHelpVisible,
       }}
     >
       {children}
@@ -40,5 +33,4 @@ const AppContextProvider: React.FC<IProviderProps> = ({
   );
 };
 
-export { AppContextProvider };
-export default AppContext;
+export default AppContextProvider;
