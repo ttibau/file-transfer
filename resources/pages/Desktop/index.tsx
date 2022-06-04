@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AppBarComponent } from '@components/AppBar';
 import DesktopItem from '@components/DesktopItem';
 import * as Styled from './styles';

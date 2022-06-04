@@ -61,8 +61,13 @@ const CreateRoomDialog = () => {
   const {
     setDialogCreateRoomVisible,
     setDialogHelpVisible,
-    dialogCreateRoomVisible,
+    removeDialogOpened,
   } = useContext(AppContext) as AppContextType;
+
+  const handleClose = () => {
+    setDialogCreateRoomVisible(false);
+    removeDialogOpened('create-room');
+  };
   return (
     <div
       {...bindDialogPosition()}
@@ -73,9 +78,7 @@ const CreateRoomDialog = () => {
       }}
     >
       <Dialog
-        onClose={() => {
-          setDialogCreateRoomVisible(false);
-        }}
+        onClose={handleClose}
         title='Create new room'
         buttonGroup={[
           {
@@ -83,7 +86,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setDialogCreateRoomVisible(false);
+              handleClose();
             },
           },
           {
@@ -91,7 +94,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setDialogHelpVisible(true);
+              handleClose();
             },
           },
           { label: 'Edit', variant: 'menu', size: 'sm', disabled: true },
