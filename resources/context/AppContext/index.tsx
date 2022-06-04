@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 
 type IAppType = {
+  dialogHelpVisible: boolean;
   dialogCreateRoomVisible: boolean;
 };
 
@@ -16,13 +17,16 @@ interface IProviderProps {
 const DEFAULT_VALUE = {
   state: {
     dialogCreateRoomVisible: false,
+    dialogHelpVisible: false,
   },
   setState: () => {},
 };
 
 const AppContext = createContext<PropsAppContext>(DEFAULT_VALUE);
 
-const AppContextProvider: React.FC = ({ children }: IProviderProps) => {
+const AppContextProvider: React.FC<IProviderProps> = ({
+  children,
+}: IProviderProps) => {
   const [state, setState] = useState(DEFAULT_VALUE.state);
   return (
     <AppContext.Provider

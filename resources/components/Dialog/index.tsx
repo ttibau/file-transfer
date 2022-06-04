@@ -16,6 +16,7 @@ export interface DialogProps {
   buttonGroup: IButtonHeader[];
   content: React.ReactNode;
   footer?: React.ReactNode;
+  onClose?: () => void;
 }
 
 const Dialog = (props: DialogProps) => {
@@ -24,7 +25,7 @@ const Dialog = (props: DialogProps) => {
       <Window className='window'>
         <WindowHeader className='window-header'>
           <span>{props.title}</span>
-          <Button>
+          <Button onClick={props.onClose}>
             <span className='close-icon' />
           </Button>
         </WindowHeader>
