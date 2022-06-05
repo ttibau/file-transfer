@@ -27,6 +27,21 @@ const AppContextProvider: React.FC<IProviderProps> = ({
   const [dialogHelpVisible, setDialogHelpVisible] = useState(false);
   const [openedDialogs, setOpenedDialogs] = useState<IOpenedDialogInfo[]>([]);
 
+  const literalDialogKeys = {
+    ['dialogCreateRoomVisible']: {
+      label: 'Create room',
+      key: 'create-room',
+    },
+    ['room-info']: {
+      label: 'Room info',
+      key: 'room-info',
+    },
+    ['help']: {
+      label: 'Help',
+      key: 'help',
+    },
+  };
+
   useEffect(() => {
     if (dialogCreateRoomVisible) {
       handleOpenedDialog('create-room', 'Create new room');
