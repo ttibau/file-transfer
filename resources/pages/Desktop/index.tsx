@@ -10,11 +10,9 @@ import CreateRoomDialog from '@components/Dialogs/CreateRoom/CreateRoom';
 import HelpDialog from '@components/Dialogs/Help/Help';
 
 const Desktop = () => {
-  const {
-    dialogCreateRoomVisible,
-    setDialogCreateRoomVisible,
-    dialogHelpVisible,
-  } = useContext(AppContext) as AppContextType;
+  const { openDialog, openedDialogs } = useContext(
+    AppContext
+  ) as AppContextType;
 
   return (
     <Styled.Container>
@@ -26,11 +24,15 @@ const Desktop = () => {
           icon='Mshtml32528_48x48_8'
           label='Create new room'
           onClick={() => {
-            setDialogCreateRoomVisible(true);
+            openDialog('create-room', 'Create new room');
           }}
         />
-        {dialogCreateRoomVisible && <CreateRoomDialog />}
-        {dialogHelpVisible && <HelpDialog />}
+        {openedDialogs.some((dialog) => dialog.key === 'create-room') && (
+          <CreateRoomDialog />
+        )}
+        {openedDialogs.some((dialog) => dialog.key === 'help') && (
+          <HelpDialog />
+        )}
       </main>
     </Styled.Container>
   );

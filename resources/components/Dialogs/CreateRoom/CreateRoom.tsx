@@ -58,14 +58,11 @@ const CreateRoomDialog = () => {
       x: params.offset[1],
     });
   });
-  const {
-    setDialogCreateRoomVisible,
-    setDialogHelpVisible,
-    removeDialogOpened,
-  } = useContext(AppContext) as AppContextType;
+  const { removeDialogOpened, openDialog } = useContext(
+    AppContext
+  ) as AppContextType;
 
   const handleClose = () => {
-    setDialogCreateRoomVisible(false);
     removeDialogOpened('create-room');
   };
 
@@ -95,7 +92,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setDialogHelpVisible(true);
+              openDialog('help', 'Help');
             },
           },
           { label: 'Edit', variant: 'menu', size: 'sm', disabled: true },

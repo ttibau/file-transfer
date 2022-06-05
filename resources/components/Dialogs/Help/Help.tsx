@@ -32,16 +32,18 @@ const DialogContent = () => {
   );
 };
 
-interface IDialogCreatePosition {
+interface IDialogPosition {
   x: number;
   y: number;
 }
 
 const HelpDialog = () => {
-  const [dialogCreateRoomPosition, setDialogCreateRoomPosition] =
-    useState<IDialogCreatePosition>({ x: 0, y: 0 });
+  const [dialogPosition, setDialogPosition] = useState<IDialogPosition>({
+    x: 0,
+    y: 0,
+  });
   const bindDialogPosition = useDrag((params) => {
-    setDialogCreateRoomPosition({
+    setDialogPosition({
       y: params.offset[0],
       x: params.offset[1],
     });
@@ -60,8 +62,8 @@ const HelpDialog = () => {
       {...bindDialogPosition()}
       style={{
         position: 'relative',
-        top: dialogCreateRoomPosition.x,
-        left: dialogCreateRoomPosition.y,
+        top: dialogPosition.x,
+        left: dialogPosition.y,
       }}
     >
       <Dialog
