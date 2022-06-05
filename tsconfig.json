@@ -8,6 +8,7 @@
       "@assets/*": ["./resources/assets/*"],
       "@public/*": ["./public/*"],
       "@resources/*": ["./resources/*"],
+      "@types/*": ["./types/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

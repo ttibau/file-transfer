@@ -68,6 +68,7 @@ const CreateRoomDialog = () => {
     setDialogCreateRoomVisible(false);
     removeDialogOpened('create-room');
   };
+
   return (
     <div
       {...bindDialogPosition()}
@@ -94,7 +95,7 @@ const CreateRoomDialog = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              handleClose();
+              setDialogHelpVisible(true);
             },
           },
           { label: 'Edit', variant: 'menu', size: 'sm', disabled: true },

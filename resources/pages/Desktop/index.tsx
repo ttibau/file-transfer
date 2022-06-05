@@ -7,11 +7,14 @@ import {
   AppContextType,
 } from '@resources/context/AppContext/index';
 import CreateRoomDialog from '@components/Dialogs/CreateRoom/CreateRoom';
+import HelpDialog from '@components/Dialogs/Help/Help';
 
 const Desktop = () => {
-  const { dialogCreateRoomVisible, setDialogCreateRoomVisible } = useContext(
-    AppContext
-  ) as AppContextType;
+  const {
+    dialogCreateRoomVisible,
+    setDialogCreateRoomVisible,
+    dialogHelpVisible,
+  } = useContext(AppContext) as AppContextType;
 
   return (
     <Styled.Container>
@@ -27,6 +30,7 @@ const Desktop = () => {
           }}
         />
         {dialogCreateRoomVisible && <CreateRoomDialog />}
+        {dialogHelpVisible && <HelpDialog />}
       </main>
     </Styled.Container>
   );
