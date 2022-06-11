@@ -39,7 +39,6 @@ const AppContextProvider: React.FC<IProviderProps> = ({
 
   // Exportar esse método do context e matar o useEffect
   const openDialog = (key: string, label: string) => {
-    console.log('adicionar nodo dialogo abierto', key);
     const newOpenedDialogs = [...openedDialogs];
     const index = newOpenedDialogs.findIndex((item) => item.key === key);
     if (index === -1) {

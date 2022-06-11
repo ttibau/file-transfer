@@ -48,12 +48,9 @@ const HelpDialog = () => {
       x: params.offset[1],
     });
   });
-  const { setDialogHelpVisible, removeDialogOpened } = useContext(
-    AppContext
-  ) as AppContextType;
+  const { removeDialogOpened } = useContext(AppContext) as AppContextType;
 
   const handleClose = () => {
-    setDialogHelpVisible(false);
     removeDialogOpened('help');
   };
 
