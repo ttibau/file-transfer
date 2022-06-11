@@ -7,6 +7,7 @@ import {
   AppContext,
   AppContextType,
 } from '@resources/context/AppContext/index';
+import { useCreateRoom } from '@resources/hooks/queries/useCreateRoom';
 
 const DialogContent = () => {
   const [roomPassword, setRoomPassword] = useState<string>('');
@@ -15,6 +16,13 @@ const DialogContent = () => {
   const _toggleAgreed = () => {
     setAgreed(!agreed);
   };
+
+  const useCreateRoomMutation = useCreateRoom();
+
+  const createRoom = () => {
+    useCreateRoomMutation.mutate(roomPassword);
+  };
+
   return (
     <Fieldset label='Room info'>
       <TextField
@@ -38,7 +46,16 @@ const DialogContent = () => {
         </Anchor>
       </Styled.DialogTermsContainer>
       <Styled.ActionContainer>
-        <Button>Create</Button>
+        <Button
+          disabled={
+            roomPassword.length <= 0 ||
+            !agreed ||
+            useCreateRoomMutation.isLoading
+          }
+          onClick={() => createRoom()}
+        >
+          {useCreateRoomMutation.isLoading ? 'Loading...' : 'Create room'}
+        </Button>
       </Styled.ActionContainer>
     </Fieldset>
   );
