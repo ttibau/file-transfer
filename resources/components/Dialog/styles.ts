@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface IContainerProps {
+  size?: 'sm' | 'md' | 'lg';
+}
+
 export const Container = styled.div`
   padding: 1rem;
   .window-header {
@@ -37,7 +41,18 @@ export const Container = styled.div`
     }
   }
   .window {
-    width: 400px;
+    width: ${(props: IContainerProps) => {
+      switch (props.size) {
+        case 'sm':
+          return '400px';
+        case 'md':
+          return '600px';
+        case 'lg':
+          return '960px';
+        default:
+          return '400px';
+      }
+    }};
     min-height: 200px;
   }
   .window:nth-child(2) {

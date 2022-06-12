@@ -34,9 +34,9 @@ const Desktop = () => {
         {openedDialogs.some((dialog) => dialog.key === 'help') && (
           <HelpDialog />
         )}
-        {openedDialogs.some((dialog) => dialog.key === 'room-info') && (
-          <RoomDialog />
-        )}
+        {/* {openedDialogs.some((dialog) => dialog.key === 'room-info') && ( */}
+        <RoomDialog />
+        {/* )} */}
       </main>
     </Styled.Container>
   );

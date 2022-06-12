@@ -17,11 +17,12 @@ export interface DialogProps {
   content: React.ReactNode;
   footer?: React.ReactNode;
   onClose?: () => void;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const Dialog = (props: DialogProps) => {
   return (
-    <Styled.Container>
+    <Styled.Container size={props.size}>
       <Window className='window'>
         <WindowHeader className='window-header'>
           <span>{props.title}</span>
