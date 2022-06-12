@@ -8,6 +8,7 @@ import {
 } from '@resources/context/AppContext/index';
 import CreateRoomDialog from '@components/Dialogs/CreateRoom/CreateRoom';
 import HelpDialog from '@components/Dialogs/Help/Help';
+import RoomDialog from '@components/Dialogs/Room/Room';
 
 const Desktop = () => {
   const { openDialog, openedDialogs } = useContext(
@@ -32,6 +33,9 @@ const Desktop = () => {
         )}
         {openedDialogs.some((dialog) => dialog.key === 'help') && (
           <HelpDialog />
+        )}
+        {openedDialogs.some((dialog) => dialog.key === 'room-info') && (
+          <RoomDialog />
         )}
       </main>
     </Styled.Container>

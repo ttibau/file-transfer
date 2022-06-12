@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useDrag } from 'react-use-gesture';
 import Dialog from '@components/Dialog';
 import { TextField, Checkbox, Anchor, Button, Fieldset } from 'react95';
@@ -18,10 +18,21 @@ const DialogContent = () => {
   };
 
   const useCreateRoomMutation = useCreateRoom();
+  const { openDialog, removeDialogOpened } = useContext(
+    AppContext
+  ) as AppContextType;
 
   const createRoom = () => {
     useCreateRoomMutation.mutate(roomPassword);
   };
+
+  useEffect(() => {
+    if (useCreateRoomMutation.status === 'success') {
+      openDialog('room-info', 'Room');
+      removeDialogOpened('create-room');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useCreateRoomMutation.status]);
 
   return (
     <Fieldset label='Room info'>

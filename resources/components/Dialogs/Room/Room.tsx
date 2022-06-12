@@ -28,7 +28,7 @@ const DialogContent = () => {
     });
   });
 
-  const { setDialogHelpVisible, removeDialogOpened } = useContext(
+  const { removeDialogOpened, openDialog } = useContext(
     AppContext
   ) as AppContextType;
 
@@ -61,7 +61,7 @@ const DialogContent = () => {
             variant: 'menu',
             size: 'sm',
             onClick: () => {
-              setDialogHelpVisible(true);
+              openDialog('help', 'Help');
             },
           },
         ]}
