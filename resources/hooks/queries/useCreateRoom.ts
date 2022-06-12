@@ -9,9 +9,5 @@ const createRoomRequest = async (password: string) => {
 };
 
 export const useCreateRoom = () => {
-  return useMutation(createRoomRequest, {
-    onSuccess: () => {
-      console.log('Room created');
-    },
-  });
+  return useMutation(createRoomRequest);
 };
