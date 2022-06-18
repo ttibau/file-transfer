@@ -45,3 +45,7 @@ export const DropFilesLabel = styled.span`
   font-style: italic;
   font-size: 0.8rem;
 `;
+
+export const TableContent = styled.div`
+  margin-top: 10px;
+`;

@@ -4,6 +4,7 @@ import Dialog from '@components/Dialog';
 import { AppContextType, AppContext } from '@resources/context/AppContext';
 import { Fieldset, Tooltip } from 'react95';
 import * as Styled from './styles';
+import FilesTable from '@components/FilesTable/FilesTable';
 
 // https://coins95.web.app/coins
 const DialogContent = () => {
@@ -46,6 +47,9 @@ const DialogContent = () => {
           Drop files here or click to upload
         </Styled.DropFilesLabel>
       </Styled.UploadFileSection>
+      <Styled.TableContent>
+        <FilesTable />
+      </Styled.TableContent>
     </div>
   );
 };
