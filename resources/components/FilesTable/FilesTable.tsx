@@ -17,14 +17,12 @@ const FilesTable = () => {
           <TableRow>
             <TableHeadCell>Type</TableHeadCell>
             <TableHeadCell>Name</TableHeadCell>
-            <TableHeadCell disabled>Level</TableHeadCell>
+            <TableHeadCell>Options</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableDataCell style={{ textAlign: 'center' }}>
-              <FileIcon imageURL='https://cdn.icon-icons.com/icons2/1812/PNG/512/4213444-extension-file-format-png-type_115361.png' />
-            </TableDataCell>
+            <TableDataCell style={{ textAlign: 'center' }}>PNG</TableDataCell>
             <TableDataCell>Bulbasaur</TableDataCell>
             <TableDataCell>64</TableDataCell>
           </TableRow>
